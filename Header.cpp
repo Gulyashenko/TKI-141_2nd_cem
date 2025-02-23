@@ -17,31 +17,31 @@ double Points::DistanceFromPointToLine(const double x1, const double y1, const d
     const double x2, const double y2, const double z2,
     const double x0, const double y0, const double z0)
 {
-    // Вычисляем разности координат
+    // Calculating coordinate differences
     double dx = x2 - x1;
     double dy = y2 - y1;
     double dz = z2 - z1;
 
-    // Вычисляем квадрат длины вектора AB
+    // Calculate the square of the length of the vector AB
     double AB_squared = dx * dx + dy * dy + dz * dz;
 
-    // Вычисляем вектор AP
+    // Calculate AP vector
     double APx = x0 - x1;
     double APy = y0 - y1;
     double APz = z0 - z1;
 
-    // Вычисляем скалярное произведение AP и AB
+    // Calculate the scalar product of AP and AB
     double dotProduct = APx * dx + APy * dy + APz * dz;
 
-    // Вычисляем параметр t проекции точки P на прямую AB
+    // Сalculate the parameter t of the projection of point P onto line AB
     double t = dotProduct / AB_squared;
 
-    // Вычисляем координаты проекции точки P на прямую AB
+    // Сalculate the coordinates of the projection of point P onto line AB
     double projectionX = x1 + t * dx;
     double projectionY = y1 + t * dy;
     double projectionZ = z1 + t * dz;
 
-    // Вычисляем расстояние между точкой P и её проекцией на прямую AB
+    // Сalculate the distance between point P and its projection onto line AB
     double distance = std::sqrt((x0 - projectionX) * (x0 - projectionX) +
         (y0 - projectionY) * (y0 - projectionY) +
         (z0 - projectionZ) * (z0 - projectionZ));
