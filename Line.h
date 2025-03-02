@@ -9,5 +9,4 @@ public:
 	Line(const Point& point1, const Point& point2);
 	Point getPoint1() const;
 	Point getPoint2() const;
-	void PointInLine(Line& line, Point& point3);
 };
