@@ -8,17 +8,16 @@ void PointInLine(Line& line, Point& point3);
 
 int main()
 {
-    setlocale(LC_ALL, "Russian");
-    auto x = getCoordinate("Введите координату x: ");
-    auto y = getCoordinate("Введите координату y: ");
+    auto x = getCoordinate("Input coordinate x: ");
+    auto y = getCoordinate("Input coordinate y: ");
     Point point1(x, y);
 
-    x = getCoordinate("Введите координату x: ");
-    y = getCoordinate("Введите координату y: ");
+    x = getCoordinate("Input coordinate x: ");
+    y = getCoordinate("Input coordinate y: ");
     Point point2(x, y);
 
-    x = getCoordinate("Введите координату x: ");
-    y = getCoordinate("Введите координату y: ");
+    x = getCoordinate("Input coordinate x: ");
+    y = getCoordinate("Input coordinate y: ");
     Point point3(x, y);
 
     Line line(point1, point2);
@@ -36,7 +35,7 @@ double getCoordinate(std::string message)
     std::cin >> coordinate;
     if (std::cin.fail())
     {
-        throw std::invalid_argument("Введено некорректное значение");
+        throw std::invalid_argument("Your input not a number");
     }
     return coordinate;
 }
@@ -53,12 +52,12 @@ void PointInLine(Line& line, Point& point3)
     double y3 = point3.getY();
 
     if ((y3 - y1) / (y2 - y1) == (x3 - x1) / (x2 - x1)) {
-        std::cout << "Точка point3 принадлежит линии line" << std::endl << "Расстояние от точки до линии равно нулю";
+        std::cout << "point3 belongs to line" << std::endl << "Distance to line is zero";
     }
     else {
-        std::cout << "Точка point3  не принадлежит линии line" << std::endl;
+        std::cout << "point3  don`t belong to line" << std::endl;
+        DistanceFromPoint(line, point3);
     }
-    DistanceFromPoint(line, point3);
 }
 
 void DistanceFromPoint(Line& line, Point& point3) 
@@ -74,5 +73,5 @@ void DistanceFromPoint(Line& line, Point& point3)
 
     double distance = fabs((y2 - y1) * x3 - (x2 - x1) * y3 + x2 * y1 - y2 * x1) /
         sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
-    std::cout << "Расстояние от точки до линии: " << distance << std::endl;
+    std::cout << "Distance to line is: " << distance << std::endl;
 }
