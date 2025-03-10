@@ -1,31 +1,43 @@
 #include <string>
 #include "Line.h"
 
+Point getPoint();
+Line getLine();
 double getCoordinate(std::string message);
 void DistanceFromPoint(Line& line, Point& point3);
-void PointInLine(Line& line, Point& point3);
+bool IsPointInLine(Line& line, Point& point3);
 
 
 int main()
 {
+    Point point= getPoint();
+
+    Line line = getLine();
+
+    if (IsPointInLine(line, point) == 1) {
+        std::cout << "point3 belongs to line" << std::endl << "Distance to line is zero";
+    }
+    else
+    {
+        std::cout << "point3  don`t belong to line" << std::endl;
+        DistanceFromPoint(line, point);
+    }
+    
+    return 0;
+}
+
+Line getLine(){
+    Point point1 = getPoint();
+    Point point2 = getPoint();
+    Line line(point1, point2);
+    return line;
+}
+
+Point getPoint(){
     auto x = getCoordinate("Input coordinate x: ");
     auto y = getCoordinate("Input coordinate y: ");
-    Point point1(x, y);
-
-    x = getCoordinate("Input coordinate x: ");
-    y = getCoordinate("Input coordinate y: ");
-    Point point2(x, y);
-
-    x = getCoordinate("Input coordinate x: ");
-    y = getCoordinate("Input coordinate y: ");
-    Point point3(x, y);
-
-    Line line(point1, point2);
-
-    PointInLine(line, point3);
-
-
-    return 0;
+    Point point(x, y);
+    return point;
 }
 
 double getCoordinate(std::string message)
@@ -40,7 +52,7 @@ double getCoordinate(std::string message)
     return coordinate;
 }
 
-void PointInLine(Line& line, Point& point3)
+bool IsPointInLine(Line& line, Point& point3)
 {
     Point point1 = line.getPoint1();
     Point point2 = line.getPoint2();
@@ -52,11 +64,10 @@ void PointInLine(Line& line, Point& point3)
     double y3 = point3.getY();
 
     if ((y3 - y1) / (y2 - y1) == (x3 - x1) / (x2 - x1)) {
-        std::cout << "point3 belongs to line" << std::endl << "Distance to line is zero";
+        return 1;
     }
     else {
-        std::cout << "point3  don`t belong to line" << std::endl;
-        DistanceFromPoint(line, point3);
+        return 0;
     }
 }
 
