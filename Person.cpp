@@ -14,12 +14,12 @@ Person::Person(const string& ln, const string& n, const string p)
 	patronymic = p;
 }
 
-void Person::show(const string& lastname, const string& name)
+void Person::show()
 {
 	cout << lastname << " " << name << endl;
 }
 
-void Person::showFormal(const string& lastname, const string& name, const string& patronymic)
+void Person::showFormal()
 {
 	cout << lastname << " " << name << " " << patronymic << endl;
 }

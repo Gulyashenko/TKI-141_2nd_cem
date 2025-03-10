@@ -2,7 +2,7 @@
 
 int main(void)
 {
-	Person fio;
-	fio.show("Gulin", "Igor");
-	fio.showFormal("Gulin", "Igor", "Alekseewich");
+	Person fio ("Gulin", "Igor");
+	fio.show();
+	fio.showFormal();
 }

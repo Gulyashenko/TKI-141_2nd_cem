@@ -12,6 +12,6 @@ private:
 public:
 	Person();
 	Person(const string& ln, const string& n, const string p = "");
-	void show(const string& lastname, const string& name); // ln + n
-	void showFormal(const string& lastname, const string& name, const string& patronymic); //ln + n + p 
+	void show(); // ln + n
+	void showFormal(); //ln + n + p 
 };
