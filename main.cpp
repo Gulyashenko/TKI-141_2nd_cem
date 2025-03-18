@@ -28,7 +28,9 @@ int main()
 Line getLine(){
     Point point1 = getPoint();
     Point point2 = getPoint();
-    return Line(point1, point2);
+    double k = findk(point1, point2);
+    double b = findb(point1, point2);
+    return Line(point1, point2, k, b);
 }
 
 Point getPoint(){
