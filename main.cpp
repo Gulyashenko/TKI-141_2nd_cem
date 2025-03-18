@@ -58,15 +58,5 @@ bool IsPointInLine(Line& line, Point& point3)
 
 double DistanceFromPoint(Line& line, Point& point3) 
 {
-    Point point1 = line.getPoint1();
-    Point point2 = line.getPoint2();
-    double x1 = point1.getX();
-    double x2 = point2.getX();
-    double x3 = point3.getX();
-    double y1 = point1.getY();
-    double y2 = point2.getY();
-    double y3 = point3.getY();
-
-    return fabs((y2 - y1) * x3 - (x2 - x1) * y3 + x2 * y1 - y2 * x1) /
-        sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+    return fabs(line.getk()*point3.getX() - point3.getY() + line.getb()) / sqrt(1 + line.getk()*line.getk());
 }
