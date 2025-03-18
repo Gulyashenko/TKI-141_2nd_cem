@@ -4,7 +4,7 @@
 Point getPoint();
 Line getLine();
 double getCoordinate(std::string message);
-void DistanceFromPoint(Line& line, Point& point3);
+double DistanceFromPoint(Line& line, Point& point3);
 bool IsPointInLine(Line& line, Point& point3);
 
 
@@ -14,13 +14,12 @@ int main()
 
     Line line = getLine();
 
-    if (IsPointInLine(line, point) == 1) {
+    if (IsPointInLine(line, point)) {
         std::cout << "point3 belongs to line" << std::endl << "Distance to line is zero";
     }
     else
     {
-        std::cout << "point3  don`t belong to line" << std::endl;
-        DistanceFromPoint(line, point);
+        std::cout << "point3  don`t belong to line" << std::endl << "distance from point to line is:" << DistanceFromPoint(line, point);
     }
     
     return 0;
@@ -29,15 +28,13 @@ int main()
 Line getLine(){
     Point point1 = getPoint();
     Point point2 = getPoint();
-    Line line(point1, point2);
-    return line;
+    return Line(point1, point2);
 }
 
 Point getPoint(){
     auto x = getCoordinate("Input coordinate x: ");
     auto y = getCoordinate("Input coordinate y: ");
-    Point point(x, y);
-    return point;
+    return Point(x, y);
 }
 
 double getCoordinate(std::string message)
@@ -54,24 +51,10 @@ double getCoordinate(std::string message)
 
 bool IsPointInLine(Line& line, Point& point3)
 {
-    Point point1 = line.getPoint1();
-    Point point2 = line.getPoint2();
-    double x1 = point1.getX();
-    double x2 = point2.getX();
-    double x3 = point3.getX();
-    double y1 = point1.getY();
-    double y2 = point2.getY();
-    double y3 = point3.getY();
-
-    if ((y3 - y1) / (y2 - y1) == (x3 - x1) / (x2 - x1)) {
-        return 1;
-    }
-    else {
-        return 0;
-    }
+    return (point3.getY() == line.getk()*point3.getX() + line.getb)
 }
 
-void DistanceFromPoint(Line& line, Point& point3) 
+double DistanceFromPoint(Line& line, Point& point3) 
 {
     Point point1 = line.getPoint1();
     Point point2 = line.getPoint2();
@@ -82,7 +65,6 @@ void DistanceFromPoint(Line& line, Point& point3)
     double y2 = point2.getY();
     double y3 = point3.getY();
 
-    double distance = fabs((y2 - y1) * x3 - (x2 - x1) * y3 + x2 * y1 - y2 * x1) /
+    return fabs((y2 - y1) * x3 - (x2 - x1) * y3 + x2 * y1 - y2 * x1) /
         sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
-    std::cout << "Distance to line is: " << distance << std::endl;
 }
