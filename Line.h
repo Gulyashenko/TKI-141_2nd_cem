@@ -13,6 +13,4 @@ public:
 	Point getPoint2() const;
     double getk() const;
     double getb() const;
-    double findk(Point& point1, Point& point2);
-    double findb(Point& point1, Point& point2);
 };

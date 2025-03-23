@@ -28,8 +28,8 @@ int main()
 Line getLine(){
     Point point1 = getPoint();
     Point point2 = getPoint();
-    double k = findk(point1, point2);
-    double b = findb(point1, point2);
+    double k = (point2.getY() - point1.getY()) / (point2.getX() - point1.getX());
+    double b = point1.getY() - point1.getX() * k;
     return Line(point1, point2, k, b);
 }
 
@@ -53,7 +53,7 @@ double getCoordinate(std::string message)
 
 bool IsPointInLine(Line& line, Point& point3)
 {
-    return (point3.getY() == line.getk()*point3.getX() + line.getb)
+    return (point3.getY() == line.getk()*point3.getX() + line.getb());
 }
 
 double DistanceFromPoint(Line& line, Point& point3) 
