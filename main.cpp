@@ -5,4 +5,5 @@ int main(void)
 	Person fio ("Gulin", "Igor");
 	fio.show();
 	fio.showFormal();
+    return 0;
 }
