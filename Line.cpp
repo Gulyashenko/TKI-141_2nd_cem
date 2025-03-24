@@ -1,7 +1,7 @@
 #include "Line.h"
 #include "Point.h"
 
-Line::Line(const Point& point1, const Point& point2, double k, double b)
+Line::Line(const Point& point1, const Point& point2)
 {
 	if (point1 == point2)
 	{

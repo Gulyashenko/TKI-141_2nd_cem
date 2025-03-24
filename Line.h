@@ -20,10 +20,8 @@ public:
     * @brief constructor of line.
     * @param point1 - first point of line.
     * @param point2 - second point of line.
-    * @param k - equation of line.
-    * @param b - equation of line.
     */
-	Line(const Point& point1, const Point& point2, const double k, const double b);
+	Line(const Point& point1, const Point& point2);
 
     /**
     * @brief Function for return point1

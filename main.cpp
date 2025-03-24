@@ -60,9 +60,7 @@ int main()
 Line getLine(){
     Point point1 = getPoint();
     Point point2 = getPoint();
-    double k = (point2.getY() - point1.getY()) / (point2.getX() - point1.getX());
-    double b = point1.getY() - point1.getX() * k;
-    return Line(point1, point2, k, b);
+    return Line(point1, point2);
 }
 
 Point getPoint(){
