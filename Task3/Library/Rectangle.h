@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <cstring>
 #include "Shape.h"
 #include "Point.h"
 
@@ -55,8 +56,9 @@ public:
     /**
      * @brief function for output rectangle
      * @param os - output stream
+     * @return string
      */
-	void toString(std::ostream& os) const override;
+    std::string toString(std::ostream& os) const override;
     /**
      * @brief operator for input rectangle
      * @param is - input stream

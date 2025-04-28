@@ -27,11 +27,12 @@ Rectangle::Rectangle(Point& topLeft, int width, int height) : Shape(), bottomRig
     this->height = height;
 }
 
-void Rectangle::toString(std::ostream& os) const
+std::string Rectangle::toString(std::ostream& os) const
 {
-    os << "Rectangle: Top left angle: " << topLeft <<
-        ", Bottom right angle: " << bottomRight << ", Width of rect: "
-        << width << ", Height of rect: " << height;
+    std::string str = "Rectangle: Top left angle: " + ToString(topLeft) +
+        ", Bottom right angle: " + ToString(bottomRight) + ", Width of rect: "
+        + std::to_string(width) + ", Height of rect: " + std::to_string(height);
+    return (str);
 }
 
 std::istream& operator>>(std::istream& is, Rectangle& rect){

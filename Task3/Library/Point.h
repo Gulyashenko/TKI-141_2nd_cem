@@ -47,8 +47,14 @@ public:
     * @param point Object of class Point to write data to
     * @return Reference to input stream
     */
-
     friend std::istream& operator>>(std::istream& is, const Point& point);
+
+    /**
+     * @brief function for make string from point
+     * @param p - point
+     * @return string
+     */
+    friend std::string ToString(const Point& p);
 };
 
 /**

@@ -41,3 +41,6 @@ double Point::getY() const
     return y;
 }
 
+std::string ToString(const Point& p) {
+    return "(" + std::to_string(p.getX()) + ";" + std::to_string(p.getY()) + ")";
+}

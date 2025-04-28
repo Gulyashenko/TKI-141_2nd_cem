@@ -8,6 +8,6 @@ Shape::Shape(LineStyle& lineStyle, Color& fillColor) :
 void Shape::draw(std::ostream& os)
 {
     os << "Shape: ";
-    toString(os);
+    os << toString(os);
     os << ", Fill color: " << fillColor << ", Line style: " << lineStyle;
 }

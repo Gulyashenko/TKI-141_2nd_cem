@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 #include "LineStyle.h"
 #include "Color.h"
 
@@ -30,8 +31,10 @@ public:
     Shape(LineStyle& lineStyle, Color& fillColor);
     /**
      * @brief function for output Shape
+     * @param os - output stream
+     * @return string
      */
-	virtual void toString(std::ostream& os) const = 0;
+	virtual std::string toString (std::ostream& os) const = 0;
     /**
      * @brief function for draw Shape
      */
