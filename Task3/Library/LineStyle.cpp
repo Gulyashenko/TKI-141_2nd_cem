@@ -15,9 +15,11 @@ LineStyle::LineStyle(Color& c, LineType type, int thikness)
     this->thickness = thikness;
 }
 
-std::ostream& operator<<(std::ostream os, LineStyle& line)
+std::ostream& operator<<(std::ostream& os, const LineStyle& line)
 {
-    os << "Line style (Color: " << line.color << ", Thickness: " << line.thickness << ", Type: ";
+    os << "Line style (Color: " << line.color 
+       << ", Thickness: " << line.thickness 
+       << ", Type: ";
     switch (line.type)
     {
     case LineType::SOLID: os << "SOLID)"; break;
@@ -26,4 +28,5 @@ std::ostream& operator<<(std::ostream os, LineStyle& line)
     case LineType::DASH_DOT: os << "DASH_DOT)"; break;
     case LineType::DASH_DOT_DOT: os << "DASH_DOT_DOT)"; break;
     }
+    return os;
 }
