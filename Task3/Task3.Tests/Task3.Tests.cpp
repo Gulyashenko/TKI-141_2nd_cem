@@ -26,9 +26,11 @@ namespace ShapeTests
             // Arrange
             Point p1(1.0, 2.0);
             Point p2(1.0, 2.0);
+            Point p3(1.0, 3.0);
             
             // Act & Assert
             Assert::IsTrue(p1 == p2);
+            Assert::IsFalse(p1 == p3);
         }
 
         TEST_METHOD(PointInequalityOperator_DifferentPoints_ReturnsTrue)
@@ -39,6 +41,7 @@ namespace ShapeTests
             
             // Act & Assert
             Assert::IsTrue(p1 != p2);
+            Assert::IsFalse(p1 != p1);
         }
     };
 
