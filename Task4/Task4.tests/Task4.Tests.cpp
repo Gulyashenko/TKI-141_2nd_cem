@@ -34,6 +34,20 @@ namespace PriorityQueueTests
             delete nextNode;
         }
 
+        TEST_METHOD(NodeSwap_Success)
+        {
+            // Arrange
+            Node node1(5, nullptr);
+            Node node2(10, nullptr);
+            
+            // Act
+            node1.swap(node2);
+            
+            // Assert
+            Assert::AreEqual(node1.getPriority(), 10);
+            Assert::AreEqual(node2.getPriority(), 5);
+        }
+
         TEST_METHOD(NodeComparisonOperators_Success)
         {
             // Arrange
@@ -66,6 +80,54 @@ namespace PriorityQueueTests
             Assert::IsTrue(queue.isEmpty());
         }
 
+        TEST_METHOD(PriorityQueueConstructor_Copy_Success)
+        {
+            // Arrange
+            PriorityQueue original;
+            original.add(5);
+            original.add(3);
+            original.add(7);
+            
+            // Act
+            PriorityQueue copy(original);
+            
+            // Assert
+            Assert::AreEqual(copy.getSize(), original.getSize());
+            Assert::AreEqual(copy.getHead()->getPriority(), original.getHead()->getPriority());
+            Assert::AreEqual(copy.getTail()->getPriority(), original.getTail()->getPriority());
+        }
+
+        TEST_METHOD(PriorityQueueConstructor_Move_Success)
+        {
+            // Arrange
+            PriorityQueue original;
+            original.add(5);
+            original.add(3);
+            int originalSize = original.getSize();
+            Node* originalHead = original.getHead();
+            Node* originalTail = original.getTail();
+            
+            // Act
+            PriorityQueue moved(std::move(original));
+            
+            // Assert
+            Assert::AreEqual(moved.getSize(), originalSize);
+            Assert::AreEqual(moved.getHead(), originalHead);
+            Assert::AreEqual(moved.getTail(), originalTail);
+            Assert::IsTrue(original.isEmpty());
+        }
+
+        TEST_METHOD(PriorityQueueConstructor_InitializerList_Success)
+        {
+            // Arrange & Act
+            PriorityQueue queue = {5, 3, 7, 1};
+            
+            // Assert
+            Assert::AreEqual(queue.getSize(), 4);
+            Assert::AreEqual(queue.getHead()->getPriority(), 7);
+            Assert::AreEqual(queue.getTail()->getPriority(), 1);
+        }
+
         TEST_METHOD(Add_ToEmptyQueue_Success)
         {
             // Arrange
@@ -91,11 +153,12 @@ namespace PriorityQueueTests
             // Act
             queue.add(5);
             queue.add(3);
+            queue.add(7);
             queue.add(1);
             
             // Assert
-            Assert::AreEqual(queue.getSize(), 3);
-            Assert::AreEqual(queue.getHead()->getPriority(), 5);
+            Assert::AreEqual(queue.getSize(), 4);
+            Assert::AreEqual(queue.getHead()->getPriority(), 7);
             Assert::AreEqual(queue.getTail()->getPriority(), 1);
         }
 
@@ -132,12 +195,13 @@ namespace PriorityQueueTests
         TEST_METHOD(Remove_MultipleElements_Success)
         {
             // Arrange
-            PriorityQueue queue;
-            queue.add(5);
-            queue.add(3);
-            queue.add(1);
+            PriorityQueue queue = {5, 3, 7, 1};
             
             // Act & Assert
+            Assert::IsTrue(queue.remove());
+            Assert::AreEqual(queue.getSize(), 3);
+            Assert::AreEqual(queue.getHead()->getPriority(), 5);
+            
             Assert::IsTrue(queue.remove());
             Assert::AreEqual(queue.getSize(), 2);
             Assert::AreEqual(queue.getHead()->getPriority(), 3);
@@ -149,6 +213,21 @@ namespace PriorityQueueTests
             Assert::IsTrue(queue.remove());
             Assert::AreEqual(queue.getSize(), 0);
             Assert::IsTrue(queue.isEmpty());
+        }
+
+        TEST_METHOD(AssignmentOperator_Success)
+        {
+            // Arrange
+            PriorityQueue original = {5, 3, 7};
+            PriorityQueue copy;
+            
+            // Act
+            copy = original;
+            
+            // Assert
+            Assert::AreEqual(copy.getSize(), original.getSize());
+            Assert::AreEqual(copy.getHead()->getPriority(), original.getHead()->getPriority());
+            Assert::AreEqual(copy.getTail()->getPriority(), original.getTail()->getPriority());
         }
 
         TEST_METHOD(Destructor_ClearsQueue_Success)
@@ -168,9 +247,7 @@ namespace PriorityQueueTests
         TEST_METHOD(OutputOperator_Success)
         {
             // Arrange
-            PriorityQueue queue;
-            queue.add(5);
-            queue.add(3);
+            PriorityQueue queue = {5, 3};
             
             // Act
             std::ostringstream os;

@@ -30,6 +30,12 @@ class PriorityQueue
          */
         PriorityQueue(PriorityQueue&& other);
         /**
+         * @brief constructor from initializer list
+         * @param mylist - list of priorities to initialize the queue
+         */
+        PriorityQueue(std::initializer_list<int> mylist);
+
+        /**
          * @brief destructor
          */
         ~PriorityQueue();

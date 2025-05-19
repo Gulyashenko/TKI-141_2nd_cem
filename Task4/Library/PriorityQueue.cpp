@@ -15,6 +15,13 @@ PriorityQueue::PriorityQueue(PriorityQueue&& other){
     std::swap(size, other.size);
 }
 
+PriorityQueue::PriorityQueue(std::initializer_list<int> mylist) : tail(nullptr), head(nullptr),
+    size(0) {
+    for (int priority : mylist) {
+        add(priority);
+    }
+}
+
 PriorityQueue::~PriorityQueue() {
     while (head != nullptr){
         remove();
