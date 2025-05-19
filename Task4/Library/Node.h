@@ -43,6 +43,12 @@ class Node{
         void setNext(Node* next);
 
         /**
+         * @brief swap function
+         * @param other - other element
+         */
+        void swap(Node& other);
+
+        /**
          * @brief operator for compare
          * @param other - other element
          */

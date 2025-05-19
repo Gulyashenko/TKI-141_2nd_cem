@@ -16,6 +16,16 @@ Node::~Node()
 {
 }
 
+void Node::swap(Node& other){
+    int tempPriority = priority;
+    priority = other.priority;
+    other.priority = tempPriority;
+
+    Node* tempNext = next;
+    next = other.next;
+    other.next = tempNext;
+}
+
 int Node::getPriority() const{
     return priority;
 }

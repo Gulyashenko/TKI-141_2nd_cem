@@ -1,4 +1,5 @@
 #pragma once
+#include <algorithm>
 #include "Node.h"
 
 /**
@@ -23,7 +24,11 @@ class PriorityQueue
         /**
          * @brief constructor
          */
-        PriorityQueue(Node* tail, Node* head, int size);
+        PriorityQueue(const PriorityQueue& other);
+        /**
+         * @brief constructor
+         */
+        PriorityQueue(PriorityQueue&& other);
         /**
          * @brief destructor
          */
@@ -64,20 +69,17 @@ class PriorityQueue
         int getSize() const;
 
         /**
-         * @brief function for set head of PriorityQueue
-         * @param head - head of PriorityQueue
-         */
-        void setHead(Node* head);
-        /** @brief function for set tail of PriorityQueue
-         * @param tail - tail of PriorityQueue
-         */
-        void setTail(Node* tail);
-
-        /**
          * @brief operator for print PriorityQueue
          * @param os - output stream
          * @param me - PriorityQueue
          * @return output stream
          */
         friend std::ostream& operator<<(std::ostream& os,const PriorityQueue& me);
+        /**
+         * @brief operator for copy PriorityQueue
+         * @param other - other element
+         * @return true if element was copied
+         */
+        bool operator=(const PriorityQueue& other);
+
 };
